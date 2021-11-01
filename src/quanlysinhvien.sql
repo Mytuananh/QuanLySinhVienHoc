@@ -52,3 +52,7 @@ use quanlysinhvienhoc;
 select Address, count(StudentID) as 'Số lượng học viên' from Student group by Address;
 select s.StudentID, s.StudentName, avg(Mark) from Student s join Mark M on s.StudentID = M.StudentID group by  s.StudentID, s.StudentName having avg(Mark) > 11;
 select s.StudentID, s.StudentName, avg(Mark) from Student s join Mark M on s.StudentID = M.StudentID group by  s.StudentID, s.StudentName having avg(Mark) <= all(select avg(Mark) from Mark group by StudentID);
+select *, max(Credit) from Subject s group by SubID, SubName having max(Credit) >= all(select max(Credit) from Subject);
+select *, max(m.Mark) from Subject join Mark M on Subject.SubID = M.SubID group by Subject.SubID, Subject.SubName having max(Mark) >= all(select max(Mark) from Mark group by m.SubID);
+select s.StudentID, s.StudentName, avg(Mark) from student s join Mark M on s.StudentID = M.StudentID group by s.StudentID, s.StudentName order by avg(Mark) desc;
+
